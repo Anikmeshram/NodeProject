@@ -1,0 +1,66 @@
+
+<style>
+
+label
+{
+  width: 100px;
+  display: inline-block;
+}
+
+</style>
+<center><div style="color: brown;"><h1>Update Employees Data</h1></div></center>
+<center>
+    
+        <b><label>Name:-</label> <input type="text" id="name" autofocus size="30"><br><p>
+        <b><label>Age:-</label> <input type="text" id="Age" size="30"><br><p>
+        <b><label>City:-</label> <input type="text" id="City" size="30"><br><p>
+        <button  onclick="putData()" style="color: black; height: 40px; width: 70px;">Update</button><p>
+        <a href="front.html" style="text-decoration: none;">Close</a>
+        
+</center>
+
+<script>
+//read query string parameters in vanilla javascript [start]
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+//alert(id);
+//read query string parameters in vanilla javascript [end]
+
+
+url = `http://localhost:8989/employees/${id}`
+fetch(url)
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+
+        document.getElementById("name").value = res['name']
+        document.getElementById("Age").value = res['Age']
+        document.getElementById("City").value = res['City']
+
+    })
+
+function putData() {
+    data = {
+        "id": id,
+        "name":document.getElementById("name").value,
+        "Age":document.getElementById("Age").value,
+        "City":document.getElementById("City").value
+    }
+
+    url = "http://localhost:8989/employees"
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        window.location.href = 'front.html'
+
+    })
+}
+
+</script>
