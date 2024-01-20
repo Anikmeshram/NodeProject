@@ -26,6 +26,7 @@ label
 
 <script>
 
+url = "https://rococo-sopapillas-4bb508.netlify.app/.netlify/functions/api/employees"  
 function postData() {
     data = {
         "name":document.getElementById("name").value,
@@ -34,7 +35,7 @@ function postData() {
     
     }
 
-    url = "https://rococo-sopapillas-4bb508.netlify.app/.netlify/functions/api/employees"
+    
     fetch(url, {
         method: "POST",
         headers: {
