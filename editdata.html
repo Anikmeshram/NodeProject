@@ -27,7 +27,7 @@ const id = urlParams.get('id');
 //read query string parameters in vanilla javascript [end]
 
 
-url = `http://localhost:8989/employees/${id}`
+url = `https://rococo-sopapillas-4bb508.netlify.app/.netlify/functions/api/employees/${id}`
 fetch(url)
     .then(res => res.json())
     .then(res => {
@@ -47,7 +47,7 @@ function putData() {
         "City":document.getElementById("City").value
     }
 
-    url = "http://localhost:8989/employees"
+    url = "https://rococo-sopapillas-4bb508.netlify.app/.netlify/functions/api/employees"
     fetch(url, {
         method: "PUT",
         headers: {
